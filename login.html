@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>
+        CCMRTU Login Page
+    </title>
+
+    <style>
+        body {
+            position: relative;
+            top: 2cm;
+            left: 30%;
+            text-align: center;
+            font-family: Arial;
+            background-image: url(background.jpg);
+        }
+
+        div {
+            border: 1px solid;
+            padding: 0px 0px 30px;
+            width: 40%;
+            background: white;
+        }
+
+        h1 {
+            padding: 5px;
+            border: 1px solid black;
+            font-size: x-large;
+            color: darkblue;
+            background-color: lightgray;
+            margin-top: 0;
+        }
+
+        a:link, a:visited {
+            font-weight: bold;
+            color: white; 
+            padding: 5px 5px; 
+            text-align: center; 
+            text-decoration: none; 
+            display: inline-block;
+            width: 50%;
+            border-radius: 4px;
+        }
+
+        #login {
+            background-color: #069817;
+        }
+        #signup {
+            background-color: #808080;
+        }
+
+        input {
+            font-size: large;
+            width: 60%;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>COVID-19 Case Management And <br> Reporting Tool For Uganda</h1>
+        <br><br>
+
+        <form action="/dashboard" method="post">
+            <input type="text" name="username" placeholder="Username"><br><br>
+            <input type="password" name="password" placeholder="Password"><br><br>
+        </form>
+        <br>
+
+        <a href="dashboard.html" id="login">
+            Log in
+        </a>
+
+        <br><br>
+        <a href="create account.html" id="signup">
+            First time? Create new account
+        </a>
+    </div>
+</body>
+
+</html>
