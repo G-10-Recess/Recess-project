@@ -1,0 +1,95 @@
+﻿body {
+    font-family: Arial;
+}
+
+div.main {
+    position: absolute;
+    left: 180px;
+    top: 65px;
+    background: white;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    border: 0;
+    margin: 0;
+}
+
+nav {
+    width: 160px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: limegreen;
+    height: 100%;
+    padding-top: 20px;
+    padding-left: 20px;
+    border: 0;
+    margin: 0;
+}
+
+h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    margin: auto;
+    font-size: x-large;
+    color: darkblue;
+    background-color: lightskyblue;
+}
+
+h2 {
+    position: absolute;
+    left: 180px;
+    top: 35px;
+    width: 100%;
+    height: 30px;
+    background-color: lightgray;
+    padding: 0 0 0 10px;
+    width: 100%;
+    border: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.indent {
+    padding-left: 15px;
+}
+
+/* Table design */
+table {
+    overflow-x: auto;
+    empty-cells: show;
+}
+
+th, td {
+    border-bottom: 1px solid darkorange;
+    border-spacing: 0;
+    padding: 5px;
+}
+
+th {
+    font-weight: bolder;
+    background-color: darkorange;
+}
+
+tr:nth-child(even) {
+    background-color: #fbdbdb;
+}
+
+tr:hover {
+    background-color: lightgray;
+}
+
+input, select {
+    font-size: medium;
+    width: 5cm;
+    border-radius: 4px;
+}
