@@ -1,91 +1,73 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\controllers\health_officerController;
-use App\Http\controllers\fundController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\OfficersController;
+use App\Http\Controllers\DonorController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\RegisterOfficer;
+use App\Http\Controllers\GraphController;
+use App\Http\Controllers\HierachicalController;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Patients;
+use App\Http\Controllers\PromotedController;
+use App\Http\Controllers\WaitingList;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view("auth.login");
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Auth::routes();
 
-Route::get('/patients', function () {
-    return view('patients');
-});
-Route::get('/Hospitals', function () {
-    return view('Hospitals');
-});
-Route::get('/health officers', function () {
-    return view('health officers');
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
 
-Route::get('/per health officer', function () {
-    return view('per health officer');
-});
-Route::get('/percentage change', function () {
-    return view(' percentage change');
-});
-Route::get('/Summary', function () {
-    return view('Summary');
-});
-Route::get('/Treasury', function () {
-    return view('Treasury');
-});
-Route::get('/payments', function () {
-    return view('payments');
-});
-
-Route::get('/variation', function () {
-    return view('variation');
-});
-Route::resource('funds','fundsController');
-
-Route::get('/create', function () {
-    return view('create');
-});
-Route::get('/donations graph', function () {
-    return view('donations graph');
-});
-Route::get('/register health officers', function () {
-    return view('register health officers');
-});
-Route::get('/general hospitals', function () {
-    return view('general hospitals');
-});
-Route::get('/regional referral hospitals', function () {
-    return view('regional referral hospitals');
-});
-Route::get('/national referral hospitals', function () {
-    return view('national referral hospitals');
-});
-Route::get('/create account', function () {
-    return view('create account');
-});
-Route::get('/signout', function () {
-    return view('signout');
-});
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 
-route::get('/add-health_officer',[health_officerController::class,'addhealth_officer'])->name('health_officer.add');
-route::post('/add-health_officer',[health_officerController::class,'savehealth_officer'])->name('save.health_officer');
-route::get('/health_officer-list',[health_officerController::class,'health_officerlist'])->name('health_officer.list');
-route::get('/add-funds',[fundController::class,'addfunds'])->name('fund.add');
-route::post('/add-funds',[fundController::class,'savefund'])->name('save.fund');
-route::get('/funds-list',[fundController::class,'fundlist'])->name('funds.list');
 
-route::get('/edit-health_officer/{$id}',[health_officerController::class,'edithealth_officer'])->name('health_officer.edit');
-route::get('/delete-health_officer/{$id}',[health_officerController::class,'deletehealth_officer'])->name('health_officer.delete');
-route::post('/update-health_officer',[health_officerController::class,'updatehealth_officer'])->name('update.health_officer');
+//controllers
+Route::get("/officers", [OfficersController::class , "index"])->name("officers")->name("officers");
+Route::post("/officers", [OfficersController::class , "store"])->name("officers");
+
+//create officers
+Route::get("/registerofficer",[RegisterOfficer::class, "index"])->name("registerofficer");
+Route::post("/registerofficer", [RegisterOfficer::class, "store"]);
+//payments
+Route::get("/funds", [DonorController::class , "index"])->name("funds");
+Route::post("/funds", [DonorController::class , "store"]);
+
+//funds
+Route::get("/payments", [PaymentController::class , "index"])->name("payments");
+Route::post("/payments", [PaymentController::class , "store"]);
+
+
+//donorlist
+Route::get('donorlist', function () {
+	//dd("HERE");
+	$donors = DB::table('donors')->get();
+	if(count($donors)){
+
+		return view("donorlist", ['donors'=>$donors]);
+	}
+	else{
+		$donors = array();
+		return view("donorlist", ['donors'=>$donors]);     
+	}
+
+});
+
+//graphs
+Route::get("/graphs", [GraphController::class, "index"])->name("graphs");
+
+//hierarchicalcontroller
+Route::get("/hierarchical", [Hierachicalcontroller::class , "index"])->name("hierarchical");
+
+
+//patientscontroller
+Route::get('patients', [Patients::class , "index"])->name("patients");
+
+//promted list
+Route::get("/promoted", [PromotedController::class , "index"])->name("promoted");
+
+//waitinglist
+Route::get("/waiting", [WaitingList::class , "index"])->name("waiting");
